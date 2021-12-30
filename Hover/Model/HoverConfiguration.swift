@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Used for creating helper which creates an imageView
+public typealias ImageViewCreatorHelper = ()-> UIImageView
 // MARK: - HoverConfiguration
 public struct HoverConfiguration {
     
@@ -38,6 +40,8 @@ public struct HoverConfiguration {
     public var initialPosition: HoverPosition
     /// Allowed positions in which the floating button can be placed
     public var allowedPositions: Set<HoverPosition>
+    
+    public var imageViewCreator: ImageViewCreatorHelper? = nil
     
     var itemConfiguration: HoverItemConfiguration {
         return HoverItemConfiguration(size: size * Constant.itemSizeRatio,

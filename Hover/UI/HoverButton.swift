@@ -21,7 +21,7 @@ class HoverButton: UIControl {
     }
     
     // MARK: Outlets
-    let imageView: UIImageView = .create {
+    var imageView: UIImageView = .create {
         $0.contentMode = .scaleAspectFit
         $0.isUserInteractionEnabled = false
     }
@@ -51,8 +51,11 @@ class HoverButton: UIControl {
     }
     
     // MARK: Lifecycle
-    init(with color: HoverColor, image: UIImage?, imageSizeRatio: CGFloat) {
+    init(with color: HoverColor, image: UIImage?, imageSizeRatio: CGFloat, imageCreator: ImageViewCreatorHelper? = nil) {
         super.init(frame: .zero)
+        if let imageCreator = imageCreator {
+            imageView =  imageCreator()
+        }
         configure(with: color, image: image, imageSizeRatio: imageSizeRatio)
     }
     
