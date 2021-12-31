@@ -15,7 +15,7 @@ public struct HoverConfiguration {
     
     // MARK: Constant
     private enum Constant {
-        static let itemSizeRatio: CGFloat = 0.75
+        static let itemSizeRatio: CGFloat = 0.85
         static let defaultSize: CGFloat = 60.0
     }
     
@@ -77,8 +77,7 @@ public struct HoverConfiguration {
 }
 
 // MARK: - HoverItemConfiguration
-struct HoverItemConfiguration {
-    
+public struct HoverItemConfiguration {    
     let size: CGFloat
     let imageSizeRatio: CGFloat
     let margin: CGFloat
