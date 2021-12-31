@@ -15,7 +15,7 @@ public struct HoverConfiguration {
     
     // MARK: Constant
     private enum Constant {
-        static let itemSizeRatio: CGFloat = 0.85
+        static let itemSizeRatio: CGFloat = 0.75
         static let defaultSize: CGFloat = 60.0
     }
     
@@ -30,6 +30,8 @@ public struct HoverConfiguration {
     public var size: CGFloat
     /// Dictates the size of the image shown in any button (imageSize = size * imageSizeRatio)
     public var imageSizeRatio: CGFloat
+    /// Dictates the size of the image shown in ItemViewbutton (imageSize = size * itemImageSizeRatio)
+    public var itemImageSizeRatio: CGFloat
     /// Spacing between the floating button to the edges
     public var padding: UIEdgeInsets
     /// Font used in items' labels
@@ -45,7 +47,7 @@ public struct HoverConfiguration {
     
     var itemConfiguration: HoverItemConfiguration {
         return HoverItemConfiguration(size: size * Constant.itemSizeRatio,
-                                      imageSizeRatio: imageSizeRatio,
+                                      imageSizeRatio: itemImageSizeRatio,
                                       margin: size * ((1 - Constant.itemSizeRatio) / 2),
                                       font: font,
                                       initialXOrientation: initialPosition.xOrientation)
@@ -57,6 +59,7 @@ public struct HoverConfiguration {
                 color: HoverColor = .color(.blue),
                 size: CGFloat = 60.0,
                 imageSizeRatio: CGFloat = 0.4,
+                itemImageSizeRatio: CGFloat? = nil,
                 padding: UIEdgeInsets = .init(top: 12, left: 12, bottom: 12, right: 12),
                 font: UIFont? = nil,
                 dimColor: UIColor = UIColor.black.withAlphaComponent(0.75),
@@ -68,6 +71,11 @@ public struct HoverConfiguration {
         self.imageExpandAnimation = imageExpandAnimation
         self.size = size
         self.imageSizeRatio = imageSizeRatio
+        if let itemImageSizeRatio = itemImageSizeRatio {
+            self.itemImageSizeRatio = itemImageSizeRatio
+        } else {
+            self.itemImageSizeRatio = imageSizeRatio
+        }
         self.padding = padding
         self.font = font
         self.dimColor = dimColor
@@ -77,7 +85,7 @@ public struct HoverConfiguration {
 }
 
 // MARK: - HoverItemConfiguration
-public struct HoverItemConfiguration {    
+struct HoverItemConfiguration {    
     let size: CGFloat
     let imageSizeRatio: CGFloat
     let margin: CGFloat
